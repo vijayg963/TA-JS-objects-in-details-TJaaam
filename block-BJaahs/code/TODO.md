@@ -10,6 +10,20 @@ If we want to build any app the two most important thing to think about is Data 
   - `isAnswerCorrect` (will accept the index and returns `true` or `false` based on the answer is correct or not)
   - `getCorrectAnswer` (will return the correct answer of the quiz when the function is called)
 
+```js
+let title = "title of the question ";
+let options = [a, b, c, d];
+let correctAnswerIndex = "b";
+
+let isAnswerCorrect = function (answer) {
+  return (answer = correctAnswerIndex);
+};
+
+let getCorrectAnswer = function (answer) {
+  return options[correctAnswerIndex];
+};
+```
+
 ### Create the object using the following ways
 
 For each different ways of creating object write different solutions.
@@ -20,12 +34,40 @@ For each different ways of creating object write different solutions.
 - Convert the function to use `this` keyword
 - Write test by creating two objects also test both methods.
 
+```js
+function createQuestion(title, options, correctAnserIndex) {
+  let questions = {};
+  this.title = title;
+  this.options = options;
+  this.correctAnswerIndex = correctAnserIndex;
+  this.isAnswerCorrect = function (index) {
+    return index == this.correctAnswerIndex;
+  };
+  this.getCorrectAnswer = () => {
+    return this.options[this.correctAnswerIndex];
+  };
+  return questions;
+}
+```
+
 ### To test use the following data
 
 ```js
-const testData = {
-  title: 'Where is the capital of Jordan',
-  options: ['Tashkent', 'Amaan', 'Kuwait City', 'Nairobi'],
+// const testData = {
+//   title: "Where is the capital of Jordan",
+//   options: ["Tashkent", "Amaan", "Kuwait City", "Nairobi"],
+//   correctAnswerIndex: 1,
+// };
+
+let question = {
+  title: "Where is the capital of Jordan",
+  options: ["Tashkent", "Amaan", "Kuwait City", "Nairobi"],
   correctAnswerIndex: 1,
+  isAnswerCorrect(index) {
+    return index == correctAnswerIndex;
+  },
+  getCorrectAnswer() {
+    return options[correctAnswerIndex];
+  },
 };
 ```
