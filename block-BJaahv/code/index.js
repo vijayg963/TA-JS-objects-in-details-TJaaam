@@ -1,12 +1,15 @@
-# 🎖 Object Creation Patterns
+// - [ ] properties (data):
+//   - [ ] name
+//   - [ ] id
+//   - [ ] noOfProjects
+// - [ ] methods:
+//   - [ ] getProjects -> return number of project
+//   - [ ] changeName -> accepts one parameter (newName)returns old user name
+//   - [ ] incrementProject -> returns updated number of projects
+//   - [ ] decrementProject -> returns updated number of projects
 
-Create a object using the following patterns given below.
+// Write 2 tests for all the different ways of creating object. Test all the methods on these objects.
 
-## Create in all 4 formats
-
-- [ ] Using function to create object
-
-```js
 function createUser(name, id, noOfProjects) {
   let data = {};
   data.name = name;
@@ -25,11 +28,8 @@ function createUser(name, id, noOfProjects) {
     return (data.noOfProjects = noOfProjects - num);
   };
 }
-```
 
-- [ ] Using Object.create (prototypal pattern)
-
-```js
+// - [ ] Using Object.create (prototypal pattern)
 let userMethods = {
   changeName: function (newName) {
     return (data.name = newName);
@@ -53,11 +53,8 @@ function UserData(name, id, noOfProjects) {
 
   return user;
 }
-```
 
-- [ ] Using Pseudoclassical Way
-
-```js
+// - [ ] Using Pseudoclassical Way
 function UserData(name, id, noOfProjects) {
   this.name = name;
   this.id = id;
@@ -78,11 +75,9 @@ UserData.prototype = {
     return (data.noOfProjects = noOfProjects - num);
   },
 };
-```
 
-- [ ] Using Class
+// - [ ] Using Class
 
-```js
 class UserData {
   constructor(name, id, noOfProjects) {
     this.name = name;
@@ -102,20 +97,3 @@ class UserData {
     return (data.noOfProjects = noOfProjects - num);
   }
 }
-```
-
-## Requirements
-
-Create User (class/function) with the following properties.
-
-- [ ] properties (data):
-  - [ ] name
-  - [ ] id
-  - [ ] noOfProjects
-- [ ] methods:
-  - [ ] getProjects -> return number of project
-  - [ ] changeName -> accepts one parameter (newName)returns old user name
-  - [ ] incrementProject -> returns updated number of projects
-  - [ ] decrementProject -> returns updated number of projects
-
-Write 2 tests for all the different ways of creating object. Test all the methods on these objects.
