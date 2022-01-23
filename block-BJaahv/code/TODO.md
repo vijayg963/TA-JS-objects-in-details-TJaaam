@@ -8,48 +8,60 @@ Create a object using the following patterns given below.
 
 ```js
 function createUser(name, id, noOfProjects) {
-  let data = {};
-  data.name = name;
-  data.id = id;
-  data.noOfProjects = noOfProjects;
-  data.changeName = function (newName) {
-    return (data.name = newName);
+  let user = {};
+  user.name = name;
+  user.id = id;
+  user.noOfProjects = noOfProjects;
+  user.getProjects = function () {
+    return user.noOfProjects;
   };
-  data.getProjects = function (noOfProjects) {
-    return (data.noOfProjects = noOfProjects);
+  user.changeName = function (newName) {
+    let prevName = user.name;
+    user.name = newName;
+    return prevName;
   };
-  data.incrementProject = function (num = 1) {
-    return (data.noOfProjects = noOfProjects + num);
+  user.incrementProject = function () {
+    user.noOfProjects += 1;
+    return user.noOfProjects;
   };
-  data.decrementProject = function (num = 1) {
-    return (data.noOfProjects = noOfProjects - num);
+  user.decrementProject = function (num = 1) {
+    user.noOfProjects -= 1;
+    return user.noOfProjects;
   };
+  return user;
 }
+
+let arya = createUser("Arya", 102, 23);
+let john = createUser("John", 113, 37);
 ```
 
 - [ ] Using Object.create (prototypal pattern)
 
 ```js
 let userMethods = {
+  getProjects: function () {
+    return this.noOfProjects;
+  },
   changeName: function (newName) {
-    return (data.name = newName);
+    let prevName = this.name;
+    this.name = newName;
+    return prevName;
   },
-  getProjects: function (noOfProjects) {
-    return (data.noOfProjects = noOfProjects);
+  incrementProject: function () {
+    this.noOfProjects += 1;
+    return this.noOfProjects;
   },
-  incrementProject: function (num = 1) {
-    return (data.noOfProjects = noOfProjects + num);
-  },
-  decrementProject: function (num = 1) {
-    return (data.noOfProjects = noOfProjects - num);
+  decrementProject: function () {
+    this.noOfProjects -= 1;
+    return this.noOfProjects;
   },
 };
 
-function UserData(name, id, noOfProjects) {
+function createUser(name, id, noOfProjects) {
   let user = Object.create(userMethods);
-  data.name = name;
-  data.id = id;
-  data.noOfProjects = noOfProjects;
+  user.name = name;
+  user.id = id;
+  user.noOfProjects = noOfProjects;
 
   return user;
 }
@@ -58,24 +70,28 @@ function UserData(name, id, noOfProjects) {
 - [ ] Using Pseudoclassical Way
 
 ```js
-function UserData(name, id, noOfProjects) {
+function CreateUser(name, id, noOfProjects) {
   this.name = name;
   this.id = id;
   this.noOfProjects = noOfProjects;
 }
 
-UserData.prototype = {
+CreateUser.prototype = {
+  getProjects: function () {
+    return this.noOfProjects;
+  },
   changeName: function (newName) {
-    return (data.name = newName);
+    let prevName = this.name;
+    this.name = newName;
+    return prevName;
   },
-  getProjects: function (noOfProjects) {
-    return (data.noOfProjects = noOfProjects);
+  incrementProject: function () {
+    this.noOfProjects += 1;
+    return this.noOfProjects;
   },
-  incrementProject: function (num = 1) {
-    return (data.noOfProjects = noOfProjects + num);
-  },
-  decrementProject: function (num = 1) {
-    return (data.noOfProjects = noOfProjects - num);
+  decrementProject: function () {
+    this.noOfProjects -= 1;
+    return this.noOfProjects;
   },
 };
 ```
@@ -83,24 +99,29 @@ UserData.prototype = {
 - [ ] Using Class
 
 ```js
-class UserData {
+class CreateUser {
   constructor(name, id, noOfProjects) {
     this.name = name;
     this.id = id;
     this.noOfProjects = noOfProjects;
   }
+CreateUser.prototype = {
+  getProjects() {
+    return this.noOfProjects;
+  },
   changeName(newName) {
-    return (data.name = newName);
-  }
-  getProjects(noOfProjects) {
-    return (data.noOfProjects = noOfProjects);
-  }
-  incrementProject(num = 1) {
-    return (data.noOfProjects = noOfProjects + num);
-  }
-  decrementProject(num = 1) {
-    return (data.noOfProjects = noOfProjects - num);
-  }
+    let prevName = this.name;
+    this.name = newName;
+    return prevName;
+  },
+  incrementProject() {
+    this.noOfProjects += 1;
+    return this.noOfProjects;
+  },
+  decrementProject() {
+    this.noOfProjects -= 1;
+    return this.noOfProjects;
+  },
 }
 ```
 
