@@ -17,3 +17,19 @@
 // 9. Check by creating two instance of the class using data of two different persons and re-assign the value of `personOne` and `personTwo`
 
 // 10. Try calling `personOne.sayHello()` and `personTwo.sayHello()`. Check if you get the required output.
+
+function createUser(name, age) {
+  let user = {};
+  user.name = name;
+  user.age = age;
+  user.sayHello = (newName) => {
+    name.replace(name, newName);
+    return alert(`Welcome ${newName}`);
+  };
+  return user;
+}
+
+let personOne = createUser("Vijay", "25");
+let personTwo = createUser("John", "24");
+
+let user = Object.create(createUser);
