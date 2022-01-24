@@ -18,18 +18,56 @@
 
 // 10. Try calling `personOne.sayHello()` and `personTwo.sayHello()`. Check if you get the required output.
 
-function createUser(name, age) {
-  let user = {};
-  user.name = name;
-  user.age = age;
-  user.sayHello = (newName) => {
-    name.replace(name, newName);
-    return alert(`Welcome ${newName}`);
-  };
-  return user;
+// let userMethods = {
+//   sayHello: function () {
+//     alert(`Welcome ${this.name}`);
+//   },
+// };
+
+// function createUser(name, age) {
+//   let user = Object.create(userMethods);
+//   user.name = name;
+//   user.age = age;
+//   return user;
+// }
+
+// let personOne = createUser("Vijay", "25");
+// let personTwo = createUser("John", "24");
+
+// let user = Object.create(createUser);
+
+// 5. Pseudoclassical pattern
+
+function CreateUser(name, age) {
+  this.name = name;
+  this.age = age;
 }
 
-let personOne = createUser("Vijay", "25");
-let personTwo = createUser("John", "24");
+CreateUser.prototype = {
+  sayHello: function () {
+    alert(`Welcome ${this.name}`);
+  },
+};
 
-let user = Object.create(createUser);
+// let personOne = new CreateUser("Vijay", "25");
+// let personTwo = new CreateUser("John", "24");
+
+// personOne.sayHello();
+// personTwo.sayHello();
+
+class User {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  sayHello = function () {
+    alert(`Hello ${this.name}`);
+  };
+}
+
+let personOne = new CreateUser("Vijay", "25");
+let personTwo = new CreateUser("John", "24");
+
+personOne.sayHello();
+personTwo.sayHello();
